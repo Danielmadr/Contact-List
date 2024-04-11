@@ -12,21 +12,19 @@ public class ContactList {
 
   private static final String NOME_ARQUIVO = "src/com/andrade/contactList/data/dados.txt"; //Nome do arquivo de dados
   private static final String SEPARADOR = System.lineSeparator(); //definição do separador de cada item da classe
-  private static List<Contato> listaContatos = new ArrayList<>(); //criação do ArrayList de forma global
+  private static final List<Contato> listaContatos = new ArrayList<>(); //criação do ArrayList de forma global
   private static long idCounter = 0; //contador dos Ids, foi escolhido o tipo long por não saber o tamanho da agenda da pessoa
 
   public static class Contato {
 
-    //classe contato conform PDF
     private Long id;
     private String nome;
     private String sobreNome;
-    private List<Telefone> telefones = new ArrayList<>();
+    private final List<Telefone> telefones = new ArrayList<>();
   }
 
   public static class Telefone {
 
-    //classe telefone conforme pdf
     private String ddd;
     private Long numero;
   }
@@ -49,7 +47,7 @@ public class ContactList {
 
   //MENU
   public static void menu(Scanner sc) throws IOException {
-    int aux = 0;
+    int aux;
     do {
       System.out.println("####################");
       System.out.println("###### AGENDA ######");
@@ -130,14 +128,11 @@ public class ContactList {
         listaContatos.remove(contatoRemover);
         atualizarArquivo();
         System.out.println("Contato removido com sucesso!");
-        return;
       } else if (aux == 2) {
         System.out.println("Remoção cancelada.");
-        return;
       }
     } else {
       System.out.println("Contato não encontrado.");
-      return;
     }
   }
 
